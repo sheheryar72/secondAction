@@ -1,22 +1,41 @@
-name: shell commands
-on: [push]
-jobs: 
- run-shell-commands:
-  runs-on: ubuntu-latest
-  steps: 
-   - name: echo a string
-     run: echo "Hello World"
-   - name: check node and npm version
-     run: |
-      node -v
-      npm -v
-   - name: run python command
-     run: |
-      import platform
-      print(platform.processor())
-     shell: python
- run-windows-commands:
-  runs-on: windows-latest
-  steps:
-  - name: Directory-Powershell
-    run: Get-Location
+# name: shell commands
+# on: [push]
+# jobs: 
+#  run-shell-commands:
+#   runs-on: ubuntu-latest
+#   steps: 
+#    - name: echo a string
+#      run: echo "Hello World"
+#    - name: check node and npm version
+#      run: |
+#       node -v
+#       npm -v
+#    - name: run python command
+#      run: |
+#       import platform
+#       print(platform.processor())
+#      shell: python
+#  run-windows-commands:
+#   runs-on: windows-latest
+#   steps:
+#   - name: Directory-Powershell
+#     run: Get-Location
+
+
+#actions.yml
+
+name: Github Action Workflow
+
+on: [push] 
+
+jobs:
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple JS Action
+        id: greet
+        uses: actions/hello-world-javascript-action@v1.1
+        with:
+          who-to-greet: Gulraiz
+      - name: Log Greeting time
+        run echo "${{ steps.greet.outputs.time }}"
